@@ -1,0 +1,39 @@
+//converts celsius to fahrenheit
+//import javax.swing.*,net.miginfocom.swing.*,java.awt.*,java.awt.event.*
+class PanelTempConverter extends JPanel {
+	private JLabel labCelsius = new JLabel("temp in C:");
+	private JLabel labFahrenheit = new JLabel("temp in F:");
+	private JTextField textCelsius = new JTextField("100.00");
+	private JTextField textFahrenheit = new JTextField("212.00");
+	private JButton butCelsius=new JButton("convert to C");
+	private JButton butFahrenheit=new JButton("convert to F");
+	public PanelTempConverter(){
+		setLayout(new MigLayout(""));
+		add(labCelsius);
+		add(textCelsius,"growx,width 150");
+		add(butFahrenheit,"wrap");
+		add(labFahrenheit);
+		add(textFahrenheit,"growx,width 150");
+		add(butCelsius,"wrap");
+		butCelsius.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//double tempF=Double.parseDouble(textFahrenheit.getText());				//String temp=textFahrenheit.getText(); //Error: Missing code implementation in the compiler
+				//System.out.print("fahrenheit "+temp);				//double tempF=100.0;//Double.parseD				//textCelsius.setText("ttest");//textFahrenheit.getText());
+			}
+		});
+		butFahrenheit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//double tempC=Double.parseDouble(textCelsius.getText());
+				//System.out.print("fahrenheit "+tempC);
+			}
+		});
+		
+	}
+}
+		
+JFrame jf = new JFrame("temperature converter");
+JPanel tempConverter=new PanelTempConverter();
+jf.setContentPane(tempConverter);
+jf.setLocation(500, 300);
+jf.setSize(330, 100);
+jf.setVisible(true);

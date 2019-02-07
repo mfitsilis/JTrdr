@@ -1,0 +1,4 @@
+
+C:\docs\myjava\jtrdr>ant -S build 
+Buildfile: C:\docs\myjava\jtrdr\build.xml
+jtrdr: C:\docs\myjava\jtrdr\build.xml

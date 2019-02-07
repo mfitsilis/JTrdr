@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project jtrdr with libraries in sub-folder">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/jtrdr.jar">
+            <manifest>
+                <attribute name="Main-Class" value="Jtrdr.Jtrdr"/>
+                <attribute name="Class-Path" value=". jtrdr_lib/jedis-2.9.0.jar jtrdr_lib/miglayout-4.0-swing.jar jtrdr_lib/jcommon-1.0.22.jar jtrdr_lib/jfreechart-1.0.17.jar jtrdr_lib/kiss.jar jtrdr_lib/rxjava-2.2.4.jar jtrdr_lib/reactive-streams-1.0.2.jar jtrdr_lib/org-apache-commons-lang.jar jtrdr_lib/miglayout-4.0-swing.jar jtrdr_lib/ulabel.jar jtrdr_lib/miglayout-4.0-swing.jar jtrdr_lib/utextbox.jar jtrdr_lib/log4j-1.2.17.jar jtrdr_lib/hotswap-agent-1.3.0.jar"/>
+            </manifest>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <fileset dir="${dir.workspace}/ulabel"/>
+            <fileset dir="${dir.workspace}/utextbox"/>
+            <fileset dir="${dir.jarfile}/resources"/>
+        </jar>
+        <delete dir="${dir.jarfile}/jtrdr_lib"/>
+        <mkdir dir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/jedis-2.9.0.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/miglayout-4.0-swing.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/jcommon-1.0.22/jcommon-1.0.22.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/jfreechart-1.0.17/lib/jfreechart-1.0.17.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/kiss/kiss.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/rxjava-2.2.4.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/reactive-streams-1.0.2.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/org-apache-commons-lang.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/ulabel/ulabel_lib/miglayout-4.0-swing.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/ulabel/ulabel.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/utextbox/utextbox_lib/miglayout-4.0-swing.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/utextbox/utextbox.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/log4j-1.2.17.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+        <copy file="${dir.workspace}/hotswap-agent-1.3.0.jar" todir="${dir.jarfile}/jtrdr_lib"/>
+    </target>
+</project>

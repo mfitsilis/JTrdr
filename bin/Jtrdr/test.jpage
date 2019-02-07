@@ -1,0 +1,181 @@
+
+int a=1134;
+
+int b=123;
+int c=a+b;
+
+
+System.out.println("c: "+c+" "+Math.signum(a));
+
+String key[] = {"one","two", "three" };
+int data[] = { 1, 2, 3 };
+
+System.out.println("key/data pairs");
+Map m = new HashMap();
+for (int i=0; i<key.length; i++) {
+    System.out.println("#"+i+": "+key[i]+", "+data[i]);
+    //place into a map - data must be an object type
+    m.put(key[i], new Integer(data[i]));
+}
+//Iterate over the map retrieving data for all its keys.
+for (Iterator i=m.keySet().iterator(); i.hasNext(); ) {
+    String aKey = (String) i.next();
+    Integer anInt = (Integer) m.get(aKey);
+    System.out.println("Saved Key = "+ aKey + ", "+ anInt);
+}
+
+
+
+class GraphicButton extends JButton {
+    public void paintComponent(Graphics g) {
+        //super.paintComponent(g);  // can't refer to super in scrapbook
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setPaint(Color.RED);
+        g2.fillRoundRect(10, 10, getWidth()-20, getHeight()-20, 14, 14);
+        g2.setPaint(Color.BLACK);
+        g2.drawRoundRect(10, 10, getWidth()-20, getHeight()-20, 14, 14);
+        g2.drawString("Graphic Test", 40, 40);
+    }
+   
+    public Dimension getPreferredSize() {
+        return new Dimension(200,100);
+    }
+}
+
+JFrame frame = new JFrame("JButton Demo");
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+Container cont = frame.getContentPane();
+
+JButton hello = new GraphicButton();
+cont.add(hello);
+
+frame.pack();
+frame.setVisible(true);
+
+
+U.println(U.timestampNow()+ " "+ U.timestamp2daynum(U.timestampNow()));
+
+
+//rxjava2
+Flowable.just("Hello world").subscribe(System.out::println);
+Flowable<Integer> flow = Flowable.range(1, 5).map(v -> v * 5).filter(v -> v % 2 == 0);
+Flowable<Integer> flow = Flowable.range(1, 5).map(v -> v * 5).filter(v -> v % 2 == 0);
+flow. subscribe(System.out::println);
+
+Integer[] numbers = {5, 101, 404, 22, 3, 1024, 65};
+Flowable<Integer> flow = Flowable.from(numbers); 
+
+java.util.List<String> words = Arrays.asList(
+		 "the",
+		 "quick",
+		 "brown",
+		 "fox",
+		 "jumped",
+		 "over",
+		 "the",
+		 "lazy",
+		 "dog"
+		);
+//Flowable.just(words).subscribe(System.out::println);
+/*
+Flowable.fromIterable(words).zipWith(Flowable.range(1, Integer.MAX_VALUE),(string, count)->String.format("%2d. %s", count, string))
+.subscribe(System.out::println);
+
+Flowable.fromIterable(words)
+.flatMap(word -> Flowable.fromArray(word.split("")))
+.zipWith(Flowable.range(1, Integer.MAX_VALUE),(string, count) -> String.format("%2d. %s", count, string))
+.subscribe(System.out::println);
+*/
+
+
+int[] intArray = {1, 2, 3, 4, 5, 6};
+
+//max
+//java.util.List<Integer> list= Arrays.asList(1, 2, 3, 4, 5, 6);
+ArrayList<Integer> list= new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+U.println(list.stream().max(Integer::compare).get());
+U.println(list.stream().min(Integer::compare).get());
+
+//1. Stream<int[]>
+Stream<int[]> streamArray = Stream.of(intArray);
+//2. Stream<int[]> -> flatMap -> IntStream
+IntStream intStream = streamArray.flatMapToInt(x -> Arrays.stream(x)).filter(x -> x>4);
+intStream.forEach(x -> System.out.println(x));
+
+
+//sum count avg sort //////
+java.util.List<Integer> list = Arrays.asList(5,13,3,4,1,2,6,9);
+U.println("sum: " + list.stream().mapToInt(Integer::intValue).sum());
+U.println("count: " + list.stream().mapToInt(Integer::intValue).count());
+U.println("average: " + list.stream().mapToInt(Integer::intValue).average());
+U.println("min: " + list.stream().mapToInt(Integer::intValue).min());
+U.println("max: " + list.stream().mapToInt(Integer::intValue).max());
+U.println("sort: " + list.stream().sorted().collect(Collectors.toList()));
+//Collections.reverse(list);
+java.util.List<?> shallowCopy = list.subList(0, list.size());
+Collections.reverse(shallowCopy);
+U.println("sort: " + list);
+U.println("first: " + list.stream().findFirst());
+U.println("last: " + list.stream().reduce((a, b) -> b));
+/////////////
+
+java.util.List<Integer> list = Arrays.asList(5,13,3,4,1,2,6,9);
+U.println(IntStream.rangeClosed(1, list.size().valueOf(list)).reversed());
+
+int n=5;
+IntStream.range(0, n).map(i -> n - i - 1).forEach(System.out::println);
+
+java.util.List<Integer> list = Arrays.asList(1,2,3,4);
+list.stream().boxed().sorted(Integer::compare).forEach(System.out::println);
+
+int n=5;
+IntStream.range(0, n).map(i -> n - i - 1);
+
+Stream.of("1", "2", "20", "3")
+.collect(Collectors.toCollection(ArrayDeque::new)) // or LinkedList
+.descendingIterator()
+.forEach(System.out::println);
+
+
+IntStream.range(0, 5).map(n -> m).forEach(System.out::println);
+
+java.util.List<Integer> list = Arrays.asList(5,13,3,4,1,2,6,9);
+list.forEach(System.out::println);
+
+
+//import javax.swing.*,import jtrdr.*JFrame jf = new JFrame("Jtrdr Main Window");
+JPanel panelCompanyData=new PanelCompanyData();
+jf.setContentPane(panelCompanyData);
+jf.setLocation(500, 300);
+jf.setSize(330, 200);
+jf.setVisible(true);
+
+new MessageBox("test","Test");
+U.println(JOptionPane.showInputDialog("enter your name"));
+API.println("test "+API.asInt(43.5));
+
+API.seed(411);
+API.println(API.random(2,51));
+API.println(API.encrypt("123335","testjello"));
+API.println(API.decrypt("123335","f0bf3a647043bfc9b38e1d86b2074bd94b50ace7e3fd4446838d80e4ff637433c9b54f8d3c27bb00db4ae45f"));
+
+API.outOpen("test.csv");
+API.println("i d1 d2 sum");
+for (int i=1; i<=100; ++i) {
+   int d1=API.random(1,6);
+   int d2=API.random(1,6);
+   int sum=d1+d2;
+   API.println(i,d1,d2,sum);
+}
+API.outClose();
+
+API.outOpen("test.csv");
+API.println("hello");
+API.outClose();
+
+API.inOpen("test.csv");
+String s1=API.readString();
+API.inClose();
+API.println(s1);
+
+API.println(API.asLong(API.time()));
